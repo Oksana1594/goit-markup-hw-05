@@ -34,6 +34,7 @@ a {
   --contrasting-color: #ffffff;
   --svg-color: #afb1b8;
   --background-secondary-color: #f5f4fa;
+  --transition-duration-timing-function: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Body */
@@ -101,7 +102,6 @@ header {
 .link,
 .current {
   color: var(--title-text-color);
-  padding: 32px 0;
   display: block;
 }
 
@@ -117,37 +117,44 @@ header {
   margin-right: 50px;
 }
 
-.site-nav .link {
+.site-navigations .link {
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
+  transition: color var(--transition-duration-timing-function);
 }
 
-.site-nav .link:hover,
-.site-nav .link:focus {
-  color: var(--accent-color);
-}
-
-.site-nav.current {
-  color: var(--accent-color);
-}
-
-.studio {
-  position: relative;
+.site-navigations.current,
+.link {
   padding: 32px 0;
 }
 
-.atelier::after {
+.site-navigations:hover,
+.site-navigations:focus,
+.link:hover,
+.link:focus {
+  color: var(--accent-color);
+}
+
+.site-navigations.current {
+  color: var(--accent-color);
+}
+
+.item-nav {
+  position: relative;
+}
+
+.site-navigations.current::after {
   content: '';
   position: absolute;
+  left: 0;
   bottom: 0;
-  width: 48px;
+  width: 100%;
   height: 4px;
-  left: 453px;
-  top: 76px;
   background: #2196f3;
   border-radius: 2px;
 }
+
 /* ===================/Навигация====================== */
 
 /* ===================Контактная информация=========== */
@@ -159,6 +166,7 @@ header {
 
 .link-contact {
   color: var(--primary-text-color);
+  transition: color var(--transition-duration-timing-function);
 }
 
 .link-contact:hover,
@@ -181,6 +189,7 @@ header {
   height: 12px;
   fill: currentColor;
   margin-right: 10px;
+  transition: fill var(--transition-duration-timing-function);
 }
 
 .contact-phone {
@@ -188,6 +197,7 @@ header {
   height: 16px;
   fill: currentColor;
   margin-right: 10px;
+  transition: fill var(--transition-duration-timing-function);
 }
 
 .contact-mail:hover,
@@ -291,7 +301,7 @@ header {
   background-size: cover;
 }
 
-.container.major {
+.container {
   text-align: center;
 }
 
@@ -320,6 +330,7 @@ header {
   letter-spacing: 0.06em;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   margin-top: 30px;
+  transition: background-color var(--transition-duration-timing-function);
 }
 
 .button.maine:hover,
@@ -466,6 +477,8 @@ header {
   border-radius: 50%;
   background-color: var(--contrasting-color);
   fill: var(--svg-color);
+  transition: fill var(--transition-duration-timing-function),
+    background-color var(--transition-duration-timing-function);
 }
 
 .social-list-link:hover,
@@ -492,6 +505,8 @@ header {
   width: 170px;
   height: 92px;
   color: var(--svg-color);
+  transition: color var(--transition-duration-timing-function),
+    border-color var(--transition-duration-timing-function);
 }
 
 .clients-link:hover,
@@ -502,6 +517,7 @@ header {
 
 .clients-icon {
   fill: currentColor;
+  transition: fill var(--transition-duration-timing-function);
 }
 
 .clients-icon:hover,
@@ -520,6 +536,9 @@ header {
   padding: 6px 22px;
   color: #212121;
   background-color: #f5f4fa;
+  transition: color var(--transition-duration-timing-function),
+    background-color var(--transition-duration-timing-function),
+    box-shadow var(--transition-duration-timing-function);
 }
 
 .button.secondary:hover,
@@ -548,6 +567,12 @@ header {
 /* =======================/Фильтр============================== */
 
 /* =======================Картотека проектов====================== */
+
+.name-projects {
+  padding: 20px 24px;
+  border: 1px solid #eeeeee;
+}
+
 .subject {
   font-weight: 700;
   font-size: 18px;
@@ -557,14 +582,11 @@ header {
   margin-bottom: 4px;
 }
 
-.name-projects {
+.name-project {
   font-size: 16px;
   line-height: 1.88;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 24px;
-  padding-right: 24px;
-  border: 1px solid #eeeeee;
+  letter-spacing: 0.03em;
+  color: var(--primary-text-color);
 }
 
 .card-set {
@@ -575,8 +597,9 @@ header {
 }
 
 .item {
-  width: 370px;
+  /* width: 370px; */
   flex-basis: calc(100%-60px / 3);
+  transition: box-shadow var(--transition-duration-timing-function);
 }
 
 .item:hover,
@@ -585,38 +608,89 @@ header {
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
-.thumb-project {
+.box-overlay {
   position: relative;
+  overflow: hidden;
 }
 
-.tecknokryak > .thumb-project::before {
-  content: '';
+.overlay {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(33, 150, 243, 0.9);
-  opacity: 0;
-}
-
-.thumb-project:hover::before {
-  opacity: 1;
-}
-
-.text-card {
-  position: absolute;
   font-size: 18px;
   line-height: 1.56;
   letter-spacing: 0.03em;
   color: var(--contrasting-color);
-  top: 63px;
-  left: 24px;
-  transform: -63% -24%;
-  width: 322px;
-  height: 168px;
-  opacity: 0;
+  padding: 63px 24px;
+  background-color: rgba(33, 150, 243, 0.9);
+  overflow: auto;
+  transform: translate(0, 100%);
+  transition: transform var(--transition-duration-timing-function);
 }
 
-.text-card:hover {
-  opacity: 1;
+.link-project:hover .overlay,
+.link-project:focus .overlay {
+  transform: translate(0, 0);
 }
 /* =======================/Картотека проектов====================== */
+
+/* ==================== Модальное окно ==================== */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: opacity var(--transition-duration-timing-function),
+    visibility var(--transition-duration-timing-function);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: inherit;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 528px;
+  min-height: 581px;
+  background-color: var(--contrasting-color);
+  border-radius: 4px;
+  transition: border-color var(--transition-duration-timing-function);
+}
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  padding: 0;
+}
+
+.untitled {
+  transition: fill var(--transition-duration-timing-function);
+}
+.close:hover .untitled,
+.close:focus .untitled {
+  fill: var(--accent-color);
+}
+
+.close:hover,
+.close:focus {
+  border-color: var(--accent-color);
+}
+
+/* ==================== /Модальное окно ==================== */
