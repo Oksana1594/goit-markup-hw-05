@@ -117,7 +117,8 @@ header {
   margin-right: 50px;
 }
 
-.site-navigations .link {
+.site-navigations,
+.link {
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
@@ -271,6 +272,10 @@ header {
   display: flex;
 }
 
+.container.cellar {
+  text-align: left;
+}
+
 .social-list-link-footer {
   display: flex;
   justify-content: center;
@@ -353,10 +358,15 @@ header {
   text-transform: uppercase;
   margin-bottom: 10px;
   margin-top: 30px;
+  text-align: left;
 }
 
 .benefits {
   display: flex;
+}
+
+.benefits-text {
+  text-align: left;
 }
 
 .benefits-item {
@@ -398,7 +408,7 @@ header {
   margin-right: 30px;
 }
 
-.subtitle-text-servises {
+.subtitle-text-services {
   position: absolute;
   bottom: 0;
   display: flex;
@@ -414,7 +424,7 @@ header {
   height: 70px;
 }
 
-.thumb-servises {
+.thumb-services {
   position: relative;
 }
 
@@ -580,6 +590,7 @@ header {
   letter-spacing: 0.06em;
   color: var(--title-text-color);
   margin-bottom: 4px;
+  text-align: left;
 }
 
 .name-project {
@@ -587,6 +598,7 @@ header {
   line-height: 1.88;
   letter-spacing: 0.03em;
   color: var(--primary-text-color);
+  text-align: left;
 }
 
 .card-set {
@@ -643,8 +655,9 @@ header {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  transform: opacity var(--transition-duration-timing-function),
-    visibility var(--transition-duration-timing-function);
+  transition: opacity var(--transition-duration-timing-function),
+    visibility var(--transition-duration-timing-function),
+    box-shadow var(--transition-duration-timing-function);
 }
 
 .backdrop.is-hidden {
@@ -662,7 +675,9 @@ header {
   min-height: 581px;
   background-color: var(--contrasting-color);
   border-radius: 4px;
-  transition: border-color var(--transition-duration-timing-function);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  transition: box-shadow var(--transition-duration-timing-function);
 }
 
 .close {
