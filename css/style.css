@@ -102,7 +102,6 @@ header {
 .link,
 .current {
   color: var(--title-text-color);
-  display: block;
 }
 
 .logo-black {
@@ -117,14 +116,13 @@ header {
   margin-right: 50px;
 }
 
-.site-navigations,
 .link,
 .current {
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
   transition: color var(--transition-duration-timing-function);
-  padding: 32px 0;
+  padding: 36px 0;
 
 }
 
@@ -144,7 +142,7 @@ header {
   content: '';
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -1px;
   width: 100%;
   height: 4px;
   background: #2196f3;
@@ -280,6 +278,7 @@ header {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
   fill: var(--contrasting-color);
+  transition: background-color var(--transition-duration-timing-function);
 }
 
 .social-list-link-footer:hover,
@@ -554,9 +553,10 @@ header {
     0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 
-.button.secondary.current {
+.button.secondary.current-filter {
   background-color: var(--accent-color);
   color: var(--contrasting-color);
+
 }
 
 .filter {
